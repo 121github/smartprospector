@@ -66,7 +66,7 @@ module.exports = function (grunt) {
         livereload: 35729
       },
       proxies: [{
-        context: '/smartprospector', // the context of the data service
+        context: '/smartapi', // the context of the data service
         host: '127.0.0.1', // wherever the data service is running
         port: 80 // the port that the data service is running on
       }],

@@ -6,7 +6,6 @@ angular.module('smartprospectorApp', [
   'ngSanitize',
   'ngRoute'
 ])
-  .constant('apiBaseURL', '/smartprospector/')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/login', {

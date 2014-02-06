@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('smartprospectorApp')
-  .service('Auth', function Auth($resource, apiBaseURL) {
-    var User = $resource(apiBaseURL + 'api/user/:action/:username/:password', {action: '@action'}, {
+  .service('Auth', function Auth($resource) {
+    var User = $resource('smartapi/user/:action/:username/:password', {action: '@action'}, {
       login: {
         method: 'GET',
         params: {
