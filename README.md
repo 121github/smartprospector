@@ -1,0 +1,1 @@
+Smart Prospector client application
