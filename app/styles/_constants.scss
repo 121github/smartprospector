@@ -1,0 +1,21 @@
+@import 'fonts';
+
+$font: 'open_sans_regular', sans-serif;
+$font-bold: 'open_sans_bold', sans-serif;
+$font-xbold: 'open_sans_extra_bold', sans-serif;
+$font-light: 'open_sans_light', sans-serif;
+$font-italic: 'open_sans_italic', sans-serif;
+
+/* Colours */
+$font-color: #585858;
+$bg-color: #F2F2F2;
+$blue: #62A8D1;
+$blue-drk: #438EB9;
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+       -o-border-radius: $radius;
+          border-radius: $radius;
+}

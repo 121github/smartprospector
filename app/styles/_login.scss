@@ -1,0 +1,41 @@
+#login {
+    padding: 20px;
+    h2 {
+        max-width: 400px;
+        margin: 40px auto;
+        text-align: center;
+        font-family: $font-light;
+        color: $blue-drk;
+    }
+    .panel {
+        max-width: 400px;
+        padding: 20px;
+        margin: auto;
+        form {
+            font-size: 0.9em;
+            input {
+                padding: 10px 10px 10px 30px;
+                height: auto;
+                box-shadow: none;
+                &:focus {
+                    z-index: 2;
+                    border-color: #ccc;
+                }
+                &[type="text"] {
+                    margin-bottom: -1px;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &[type="password"] {
+                    margin-bottom: 10px;
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+            }
+            button {
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+

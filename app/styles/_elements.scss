@@ -1,0 +1,27 @@
+.input-icon-left {
+  position: relative;
+  input {
+    padding-left: 30px;
+  }
+  .glyphicon {
+    position: absolute;
+    padding: 13px 12px;
+    pointer-events: none;
+    color: #C2C2C2;
+  }
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 10px;
+  &.alert-danger {
+    background-color: #FEF1F1;
+    border: 1px solid #E2A8A8;
+    color: #D46D6D;
+  }
+  &.alert-success {
+    background-color: #E8F7ED;
+    border: 1px solid #30B661;
+    color: #1BA84E;
+  }
+}

@@ -1,0 +1,22 @@
+<section id="login">
+  <h2>Welcome</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <form name="loginForm" novalidate role="form" ng-submit="doLogin()">
+        <div class="input-icon-left">
+          <span class="glyphicon glyphicon-user"></span>
+          <input type="text" class="form-control" placeholder="Username" required ng-model="user.username">
+        </div>
+        <div class="input-icon-left">
+          <span class="glyphicon glyphicon-lock"></span>
+          <input type="password" class="form-control" placeholder="Password" required ng-model="user.password">
+        </div>
+        <div ng-if="alert.show" class="alert alert-danger">{{alert.msg}}</div>
+        <button class="btn btn-lg btn-info btn-block" type="submit">SIGN IN</button>
+        <a href="">Forgot your password?</a>
+      </form>
+    </div>
+  </div>
+</section>
+
+
