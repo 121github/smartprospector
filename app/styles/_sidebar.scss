@@ -1,0 +1,45 @@
+$font-color: #5E5E5E;
+
+#sidebar {
+  width: $sidebar-width;
+  .nav {
+    padding-top: 60px;
+    li {
+      a {
+        color: $font-color;
+        text-align: center;
+        font-size: 11px;
+        margin-left: 8px;
+        &:hover {
+          background-color: transparent;
+          .glyphicon {
+            color: $blue;
+          }
+        }
+        .glyphicon {
+          font-size: 24px;
+        }
+      }
+      &.active {
+        a {
+          color: $font-color;
+          background-color: #fff; 
+          width: $sidebar-width - 7px;
+          @include border-radius(0px);
+          @include border-radius-tl-bl(4px);
+          border: 1px solid $border-color;
+          border-right-color: transparent;
+          z-index: 2;
+            -webkit-box-shadow: -4px 2px 2px 2px #ddd;
+               -moz-box-shadow: -4px 2px 2px 2px #ddd;
+                    box-shadow: -4px 2px 2px 2px #ddd;
+          &:hover {
+            .glyphicon {
+              color: $font-color;
+            }
+          }
+        }
+      }
+    }
+  }
+}

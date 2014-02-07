@@ -14,7 +14,12 @@ angular.module('smartprospectorApp', [
       })
       .when('/dashboard', {
         templateUrl: 'views/dashboard.html',
-        controller: 'DashboardCtrl'
+        controller: 'DashboardCtrl',
+        permission: 'access_app'
+      })
+      .when('/users', {
+        templateUrl: 'views/users.html',
+        controller: 'UsersCtrl'
       })
       .otherwise({
         redirectTo: '/login'

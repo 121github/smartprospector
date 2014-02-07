@@ -24,11 +24,11 @@ angular.module('smartprospectorApp')
       });
     };
     var logout = function () {
-      currentUser.logout({}, function () {
+      currentUser.$logout({}, function () {
         $location.path('/login');
       });
     };
-    var createUser = function (userData) {
+    var setUser = function (userData) {
       currentUser = new User(userData);
       $cookieStore.put('currentUser', currentUser);
       $rootScope.$broadcast('permissionsChanged');
@@ -40,12 +40,11 @@ angular.module('smartprospectorApp')
       return !permission || currentUser.permissions.indexOf(permission) !== -1;
     };
     var deauthoriseUser = function () {
-      currentUser.permissions = [];
-      $rootScope.$broadcast('permissionsChanged');
+      setUser({permissions: []});
     };
     return {
       login: login,
-      createUser: createUser,
+      setUser: setUser,
       currentUser: currentUser,
       isLoggedIn: isLoggedIn,
       logout: logout,

@@ -19,15 +19,18 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body>
+  <body ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     
-    <div has-permission='view_dashboard' ng-include="'/views/navbar.html'"></div>
+    <div has-permission='access_app' ng-include="'/views/navbar.html'"></div>
     
-    <!-- Add your site or application content here -->
-    <div ng-view=""></div>
+    <div id="wrap">
+      <div has-permission='access_app' ng-include="'/views/sidebar.html'" ng-controller="NavCtrl"></div>
+      <!-- Add your site or application content here -->
+      <div ng-view class="page-content"></div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -64,6 +67,8 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/dashboard.js"></script>
         <script src="scripts/directives/hasPermission.js"></script>
+        <script src="scripts/controllers/users.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
         <!-- endbuild -->
 </body>
 </html>

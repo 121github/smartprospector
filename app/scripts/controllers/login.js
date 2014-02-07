@@ -21,7 +21,7 @@ angular.module('smartprospectorApp')
       }
       Auth.login($scope.user.username, $scope.user.password).$promise.then(
       function (response) {
-        Auth.createUser(response);
+        Auth.setUser(response);
         $location.path('/dashboard');
       },
       function (response) {
