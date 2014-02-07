@@ -16,7 +16,32 @@ describe('Controller: LoginCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    //expect(scope.awesomeThings.length).toBe(3);
+  it('should attach the pageTitle to the scope', function () {
+    expect(scope.pageTitle).not.toBe('');
   });
+  
+  describe('Login failure alert', function() {
+    
+    it('should attach the alert object to the scope', function () {
+      expect(scope.alert).toBeDefined();
+    });
+    
+    it('should hide the alert by default', function () {
+      expect(scope.alert.show).toBe(false);
+    });
+    
+    it('should contain an empty message by default', function () {
+      expect(scope.alert.msg).toBe('');
+    });
+    
+  });
+  
+  describe('doLogin function', function () {
+    
+    
+    
+  });
+  
+  
+  
 });

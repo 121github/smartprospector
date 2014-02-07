@@ -3,9 +3,12 @@ $icon-font-path: "/bower_components/sass-bootstrap/fonts/";
 @import 'sass-bootstrap/lib/bootstrap';
 @import 'constants';
 @import 'elements';
-@import 'login';
 
 body {
   font-family: $font;
   background-color: $bg-color;
 }
+
+@import 'login';
+@import 'navbar';
+@import 'dashboard';
