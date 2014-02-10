@@ -1,14 +1,14 @@
 <div id="sidebar">
   <ul class="nav nav-pills nav-stacked">
-    <li ng-repeat="link in links" ng-class="{'active' : link.text === pageTitle}">
+    <li ng-repeat="link in links" ng-class="{'active' : link.text === pageTitle}" has-permission="{{link.permission}}">
       <a href="#/{{link.page}}">
-        <span class="glyphicon {{link.icon}}"></span><br/>
+        <i class="fa {{link.icon}}"></i><br/>
         <span>{{link.text}}</span>
       </a>
     </li>
     <li>
       <a href="" ng-click="doLogout()">
-        <span class="glyphicon glyphicon-log-out"></span><br/>
+        <i class="fa fa-sign-out"></i><br/>
         <span>Logout</span>
       </a>
     </li>

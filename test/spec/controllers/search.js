@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: NavCtrl', function () {
+describe('Controller: SearchCtrl', function () {
 
   // load the controller's module
   beforeEach(module('smartprospectorApp'));
 
-  var NavCtrl,
+  var SearchCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    NavCtrl = $controller('NavCtrl', {
+    SearchCtrl = $controller('SearchCtrl', {
       $scope: scope
     });
   }));

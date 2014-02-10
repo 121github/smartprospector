@@ -4,7 +4,8 @@ angular.module('smartprospectorApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ui.bootstrap'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -19,10 +20,21 @@ angular.module('smartprospectorApp', [
       })
       .when('/users', {
         templateUrl: 'views/users.html',
-        controller: 'UsersCtrl'
+        controller: 'UsersCtrl',
+        permission: 'access_users'
+      })
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+        permission: 'access_search'
+      })
+      .when('/appointments', {
+        templateUrl: 'views/appointments.html',
+        controller: 'AppointmentsCtrl',
+        permission: 'access_appointments'
       })
       .otherwise({
-        redirectTo: '/login'
+        redirectTo: '/dashboard'
       });
   })
   .config(function($httpProvider) {
@@ -33,7 +45,7 @@ angular.module('smartprospectorApp', [
       return function(promise) {
         return promise.then(null, function(response) {
           if(response.status === 403 || response.status === 401) {
-            $location.path('/login');
+            $location.path('/dashboard');
           }
           return $q.reject(response);
         });

@@ -7,11 +7,11 @@ $font-light: 'open_sans_light', sans-serif;
 $font-italic: 'open_sans_italic', sans-serif;
 
 /* Colours */
-$bg-color: #E3E3E3;
+$bg-color: #E8E8E8;
 $border-color: #ccc;
-$blue: #27AAE1;
+$blue: #66AFE9;
 
-$sidebar-width: 110px;
+$sidebar-width: 104px;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;

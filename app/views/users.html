@@ -1,11 +1,40 @@
 <div id="users">
-
-  <div class="page-title">
-    {{pageTitle}}
-  </div>
-
   <div class="view-container">
-    
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <i class="fa fa-bar-chart-o"></i> &nbsp;User Stats
+          </div>
+          <div class="panel-body">
+            Some stats
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <button class="btn btn-warning btn-square" has-permission="create_user" tooltip-placement="right" tooltip="Add user">
+          <i class="fa fa-plus"></i>
+        </button>
+        <form class="pull-right" role="form">
+          <div class="form-group input-icon-left">
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="text" class="form-control" placeholder="Search" ng-model="filter">
+          </div>
+        </form>
+        <div class="clearfix"></div>
+        <ul class="nav nav-pills nav-stacked">
+          <li ng-repeat="user in users| filter:filter">
+            <a href="#">
+              <div class="avatar">
+                <span class="glyphicon glyphicon-user"></span>
+              </div>
+              <div class="name">
+                <div class="first">{{user.first_name}} &nbsp; </div>{{user.last_name}}
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-
 </div>

@@ -3,26 +3,26 @@ $font-color: #5E5E5E;
 #sidebar {
   width: $sidebar-width;
   .nav {
-    padding-top: 60px;
+    padding-top: 20px;
     li {
       a {
         color: $font-color;
         text-align: center;
         font-size: 11px;
         margin-left: 8px;
+        padding: 13px 15px;
         &:hover {
           background-color: transparent;
-          .glyphicon {
+          .fa {
             color: $blue;
           }
         }
-        .glyphicon {
-          font-size: 24px;
+        .fa {
+          font-size: 23px;
         }
       }
       &.active {
         a {
-          color: $font-color;
           background-color: #fff; 
           width: $sidebar-width - 7px;
           @include border-radius(0px);
@@ -30,11 +30,12 @@ $font-color: #5E5E5E;
           border: 1px solid $border-color;
           border-right-color: transparent;
           z-index: 2;
-            -webkit-box-shadow: -4px 2px 2px 2px #ddd;
-               -moz-box-shadow: -4px 2px 2px 2px #ddd;
-                    box-shadow: -4px 2px 2px 2px #ddd;
+          padding: 12px 15px;
+          -webkit-box-shadow: -4px 2px 2px 2px rgba(0, 0, 0, 0.03);
+             -moz-box-shadow: -4px 2px 2px 2px rgba(0, 0, 0, 0.03);
+                  box-shadow: -4px 2px 2px 2px rgba(0, 0, 0, 0.03);
           &:hover {
-            .glyphicon {
+            .fa {
               color: $font-color;
             }
           }

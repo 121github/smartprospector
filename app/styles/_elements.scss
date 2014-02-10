@@ -1,7 +1,8 @@
 .input-icon-left {
   position: relative;
   input {
-    padding-left: 30px;
+    height: auto;
+    padding: 10px 10px 10px 30px;
   }
   .glyphicon {
     position: absolute;
@@ -24,4 +25,11 @@
     border: 1px solid #30B661;
     color: #1BA84E;
   }
+}
+
+.btn-square {
+  @include border-radius(0px);
+  height: 42px;
+  width: 42px;
+  transition: 0.2s all linear;
 }

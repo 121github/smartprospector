@@ -36,12 +36,4 @@ describe('Controller: LoginCtrl', function () {
     
   });
   
-  describe('doLogin function', function () {
-    
-    
-    
-  });
-  
-  
-  
 });

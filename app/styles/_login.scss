@@ -14,9 +14,6 @@
         form {
             font-size: 0.9em;
             input {
-                padding: 10px 10px 10px 30px;
-                height: auto;
-                box-shadow: none;
                 &:focus {
                     z-index: 2;
                     border-color: #ccc;
