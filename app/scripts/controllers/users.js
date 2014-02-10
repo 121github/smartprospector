@@ -5,6 +5,6 @@ angular.module('smartprospectorApp')
     
     $rootScope.pageTitle = 'Users';
     $scope.users = User.query({action: 'all'});
-    
+    $scope.roleFilter = 'all';
     
   });

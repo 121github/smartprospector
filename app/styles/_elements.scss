@@ -26,10 +26,3 @@
     color: #1BA84E;
   }
 }
-
-.btn-square {
-  @include border-radius(0px);
-  height: 42px;
-  width: 42px;
-  transition: 0.2s all linear;
-}

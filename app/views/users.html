@@ -12,24 +12,34 @@
         </div>
       </div>
       <div class="col-md-9">
-        <button class="btn btn-warning btn-square" has-permission="create_user" tooltip-placement="right" tooltip="Add user">
-          <i class="fa fa-plus"></i>
-        </button>
-        <form class="pull-right" role="form">
-          <div class="form-group input-icon-left">
-            <span class="glyphicon glyphicon-search"></span>
-            <input type="text" class="form-control" placeholder="Search" ng-model="filter">
+        <div class="row">
+          <div class="col-md-9" id="user-controls">
+            <button class="btn btn-warning" has-permission="create_user" tooltip-placement="right" tooltip="Add user" tooltip-popup-delay='500'>
+              <i class="fa fa-plus"></i>
+            </button>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary" ng-model="roleFilter" btn-radio="'all'">All</button>
+              <button type="button" class="btn btn-primary" ng-model="roleFilter" btn-radio="'user'">User</button>
+              <button type="button" class="btn btn-primary" ng-model="roleFilter" btn-radio="'admin'">Admin</button>
+            </div>
           </div>
-        </form>
-        <div class="clearfix"></div>
+          <div class="col-md-3">
+            <form role="form">
+              <div class="form-group input-icon-left">
+                <span class="glyphicon glyphicon-search"></span>
+                <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
+              </div>
+            </form>
+          </div>
+        </div>
         <ul class="nav nav-pills nav-stacked">
-          <li ng-repeat="user in users| filter:filter">
-            <a href="#">
+          <li ng-repeat="user in users| filter:searchFilter">
+            <a href="#" class="hovering-{{user.hovering|| false}}" ng-mouseenter="user.hovering = true;" ng-mouseleave="user.hovering = false;">
               <div class="avatar">
                 <span class="glyphicon glyphicon-user"></span>
               </div>
               <div class="name">
-                <div class="first">{{user.first_name}} &nbsp; </div>{{user.last_name}}
+                {{user.first_name}} {{user.last_name}}
               </div>
             </a>
           </li>
