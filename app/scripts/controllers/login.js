@@ -9,8 +9,6 @@ angular.module('smartprospectorApp')
       msg: ''
     };
     
-    Auth.deauthoriseUser();
-
     $scope.doLogin = function() {
       if ($scope.loginForm.$invalid) {
         $scope.alert = {

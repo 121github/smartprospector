@@ -33,6 +33,11 @@ angular.module('smartprospectorApp', [
         controller: 'AppointmentsCtrl',
         permission: 'access_appointments'
       })
+      .when('/createuser', {
+        templateUrl: 'views/createuser.html',
+        controller: 'CreateUserCtrl',
+        permission: 'create_user'
+      })
       .otherwise({
         redirectTo: '/dashboard'
       });
@@ -45,7 +50,7 @@ angular.module('smartprospectorApp', [
       return function(promise) {
         return promise.then(null, function(response) {
           if(response.status === 403 || response.status === 401) {
-            $location.path('/dashboard');
+            $location.path('/login');
           }
           return $q.reject(response);
         });
@@ -58,7 +63,7 @@ angular.module('smartprospectorApp', [
         if (Auth.isLoggedIn()) {
           $location.path('/dashboard');
         } else {
-          $location.path('/login');
+          Auth.killUser();
         }
       }
     });

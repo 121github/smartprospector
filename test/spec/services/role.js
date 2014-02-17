@@ -1,14 +1,14 @@
 'use strict';
 
-describe('Service: User', function () {
+describe('Service: Role', function () {
 
   // load the service's module
   beforeEach(module('smartprospectorApp'));
 
   // instantiate service
-  var User;
-  beforeEach(inject(function (_User_) {
-    User = _User_;
+  var Role;
+  beforeEach(inject(function (_Role_) {
+    Role = _Role_;
   }));
 
 });

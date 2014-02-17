@@ -1,50 +1,55 @@
 <div id="users">
+  <ol class="breadcrumb">
+    <li class="active">Users</li>
+  </ol> <!-- /.breadcrumb -->
   <div class="view-container">
-    <div class="row">
-      <div class="col-md-3">
-        <div class="panel panel-default">
+    <div ng-switch="loading">
+      <div ng-switch-when="true" class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+      <div ng-switch-when="false">
+        <!-- Place everything you want to mask by the loading animation here -->
+        <div id="users-panel" class="panel panel-default">
           <div class="panel-heading">
-            <i class="fa fa-bar-chart-o"></i> &nbsp;User Stats
+            <i class="fa fa-users"></i> System Users
+            <button id="new-user-btn" class="btn btn-sm btn-info" has-permission="create_user" ng-click="go('createuser');">
+              <i class="fa fa-plus"></i> Create user
+            </button>
           </div>
           <div class="panel-body">
-            Some stats
-          </div>
-        </div>
-      </div>
-      <div class="col-md-9">
-        <div class="row">
-          <div class="col-md-9" id="user-controls">
-            <button class="btn btn-warning" has-permission="create_user" tooltip-placement="right" tooltip="Add user" tooltip-popup-delay='500'>
-              <i class="fa fa-plus"></i>
-            </button>
-            <div class="btn-group">
-              <button type="button" class="btn btn-primary" ng-model="roleFilter" btn-radio="'all'">All</button>
-              <button type="button" class="btn btn-primary" ng-model="roleFilter" btn-radio="'user'">User</button>
-              <button type="button" class="btn btn-primary" ng-model="roleFilter" btn-radio="'admin'">Admin</button>
-            </div>
-          </div>
-          <div class="col-md-3">
             <form role="form">
-              <div class="form-group input-icon-left">
+              <div class="input-icon-left">
                 <span class="glyphicon glyphicon-search"></span>
                 <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
               </div>
             </form>
-          </div>
-        </div>
-        <ul class="nav nav-pills nav-stacked">
-          <li ng-repeat="user in users| filter:searchFilter">
-            <a href="#" class="hovering-{{user.hovering|| false}}" ng-mouseenter="user.hovering = true;" ng-mouseleave="user.hovering = false;">
-              <div class="avatar">
-                <span class="glyphicon glyphicon-user"></span>
+            <div id="filters">
+              <div ng-repeat="role in roles">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" ng-click="role.checked = !role.checked; toggleRoleFilter();"> {{role.role}}
+                  </label>
+                </div>
               </div>
-              <div class="name">
-                {{user.first_name}} {{user.last_name}}
-              </div>
-            </a>
-          </li>
-        </ul>
-      </div>
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+              <li ng-repeat="user in users| filter:searchFilter | filter:filterByRole">
+                <a href="#" ng-class="{'last' : $last}">
+                  <div class="dot"></div>
+                  <div class="name">
+                    {{user.first_name}} {{user.last_name}}
+                  </div>
+                  <div class="label label-default pull-right">{{user.role}}</div>
+                </a>
+              </li>
+            </ul>
+          </div> <!-- /.panel-body -->
+        </div> <!-- /#users-panel -->
+      </div> <!-- end of loading animation mask -->
     </div>
-  </div>
-</div>
+  </div> <!-- /.view-container -->
+</div> <!-- /#users -->
