@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('smartprospectorApp')
-  .controller('SearchCtrl', function ($rootScope, $scope) {
+  .controller('SearchCtrl', function ($rootScope) {
     $rootScope.pageTitle = 'Search';
   });
