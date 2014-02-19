@@ -1,18 +1,3 @@
-@import 'fonts';
-
-$font: 'open_sans_regular', sans-serif;
-$font-bold: 'open_sans_bold', sans-serif;
-$font-xbold: 'open_sans_extra_bold', sans-serif;
-$font-light: 'open_sans_light', sans-serif;
-$font-italic: 'open_sans_italic', sans-serif;
-
-/* Colours */
-$bg-color: #F0F0F0;
-$border-color: #ccc;
-$blue: #66AFE9;
-
-$sidebar-width: 104px;
-
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;

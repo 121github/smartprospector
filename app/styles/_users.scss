@@ -61,30 +61,5 @@
       background-color: #FAFAFA;
       border-bottom: 1px solid #DDDDDD;
     }
-
-    #filters {
-      
-      padding: 6px 12px;
-      background-color: #FAFAFA;
-      border-bottom: 1px solid #DDDDDD;
-      
-      div {
-        display: inline-block;
-        max-width: 100px;
-      }
-      
-      .checkbox {
-        padding: 2px 8px 2px 28px;
-        margin: 4px 8px 4px 0;
-        @include border-radius(2px);
-        background-image: linear-gradient(to bottom, #F0AD4E 0%, #EB9316 100%);
-        background-repeat: repeat-x;
-        border: 1px solid #E38D13;
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.075);
-        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-        color: #fff;
-      }
-      
-    }
   }
 }

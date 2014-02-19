@@ -26,16 +26,12 @@
                 <span class="glyphicon glyphicon-search"></span>
                 <input type="text" class="form-control" placeholder="Search" ng-model="searchFilter">
               </div>
-            </form>
-            <div id="filters">
-              <div ng-repeat="role in roles">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" ng-click="role.checked = !role.checked; toggleRoleFilter();"> {{role.role}}
-                  </label>
-                </div>
+              <div class="radio" ng-repeat="role in roles">
+                <label>
+                  <input type="radio" value="{{role}}" ng-model="filterRole.selected"> {{role}}
+                </label>
               </div>
-            </div>
+            </form>
             <ul class="nav nav-pills nav-stacked">
               <li ng-repeat="user in users| filter:searchFilter | filter:filterByRole">
                 <a href="#" ng-class="{'last' : $last}">
