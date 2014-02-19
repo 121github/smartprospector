@@ -36,7 +36,6 @@ angular.module('smartprospectorApp')
 
     var killUser = function () {
       setUser({permissions: []});
-      $location.path('/login');
     };
 
     var isLoggedIn = function () {

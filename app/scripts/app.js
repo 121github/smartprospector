@@ -63,7 +63,7 @@ angular.module('smartprospectorApp', [
         if (Auth.isLoggedIn()) {
           $location.path('/dashboard');
         } else {
-          Auth.killUser();
+          $location.path('/login');
         }
       }
     });
