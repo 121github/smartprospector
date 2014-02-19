@@ -36,30 +36,28 @@
 }
 
 .alert {
-  position: absolute;
+  position: fixed;
   top: 60px;
   width: 300px;
   left: 50%;
   margin-left: -150px;
   z-index: 99999999;
   text-align: center;
-  font-size: 12px;
   opacity: 0;
   transition: opacity linear 0.4s;
-  padding: 10px;
   background-image: none;
   &.show-true {
     opacity: 1;
   }
   &.alert-danger {
-    background-color: #FEF1F1;
-    border: 1px solid #E2A8A8;
-    color: #D46D6D;
+    background-color: $danger-bg-color;
+    border: 1px solid $danger-border-color;
+    color: $danger-font-color;
   }
   &.alert-success {
-    background-color: #E8F7ED;
-    border: 1px solid #30B661;
-    color: #1BA84E;
+    background-color: $success-bg-color;
+    border: 1px solid $success-border-color;
+    color: $success-font-color;
   }
 }
 

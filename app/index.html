@@ -20,7 +20,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     
-    <alert has-permission='access_app' class="show-{{alert.show}}" type="alert.type">{{alert.message}}</alert>
+    <alert has-permission='access_app' class="show-{{alert.show}}" type="alert.type" close="closeAlert()">{{alert.message}}</alert>
     
     <div id="page-wrap">
       <div has-permission='access_app' ng-include="'/views/navbar.html'" ng-controller="NavCtrl"></div>

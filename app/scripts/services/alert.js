@@ -7,6 +7,9 @@ angular.module('smartprospectorApp')
       type: '',
       message: ''
     };
+    $rootScope.closeAlert = function () {
+      $rootScope.alert.show = false;
+    };
     var timoutStartCounter = 0,
       timoutStopCounter = 0;
     var show = function(type, message) {
