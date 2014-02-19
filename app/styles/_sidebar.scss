@@ -2,8 +2,9 @@ $font-color: #5E5E5E;
 
 #sidebar {
   width: $sidebar-width;
+  position: fixed;
   .nav {
-    padding-top: 20px;
+    padding-top: 70px;
     li {
       a {
         color: $font-color;
