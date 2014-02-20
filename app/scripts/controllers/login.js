@@ -1,22 +1,14 @@
 'use strict';
 
 angular.module('smartprospectorApp')
-  .controller('LoginCtrl', function($rootScope, $scope, $location, Auth) {
+  .controller('LoginCtrl', function($rootScope, $scope, $location, Auth, Alert) {
 
     $rootScope.pageTitle = 'Welcome';
-    $scope.alert = {
-      show: false,
-      msg: ''
-    };
-    
     Auth.killUser();
     
     $scope.doLogin = function() {
       if ($scope.loginForm.$invalid) {
-        $scope.alert = {
-          show: true,
-          msg: 'The username and password fields are required'
-        };
+        Alert.show('danger', 'The username & password fields are required');
         return false;
       }
       Auth.login($scope.user.username, $scope.user.password).$promise.then(
@@ -25,10 +17,7 @@ angular.module('smartprospectorApp')
         $location.path('/dashboard');
       },
       function (response) {
-        $scope.alert = {
-          show: true,
-          msg: response.data
-        };
+        Alert.show('danger', response.data);
       });
     };
     

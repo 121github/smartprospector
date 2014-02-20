@@ -1,0 +1,36 @@
+.form-control {
+  height: auto;
+  padding: $form-control-padding;
+  box-shadow: none;
+  &:focus {
+    box-shadow: none;
+  }
+}
+
+.input-icon-left {
+  position: relative;
+  .form-control {
+    padding-left: $form-control-padding + 20px;
+  }
+  .glyphicon {
+    position: absolute;
+    padding: 13px 12px;
+    pointer-events: none;
+    color: $form-control-icon-color;
+  }
+}
+
+.css-form {
+  input {
+    &.ng-invalid {
+      &.ng-dirty {
+        border: 1px solid $danger-border-color;
+      }
+    }
+    &.ng-valid {
+      &.ng-dirty {
+        border: 1px solid $success-border-color;
+      }
+    }
+  }
+}

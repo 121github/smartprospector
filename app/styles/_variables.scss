@@ -8,7 +8,8 @@ $font-light: 'open_sans_light', sans-serif;
 $font-italic: 'open_sans_italic', sans-serif;
 
 /* Colours */
-$bg-color: #F0F0F0;
+$body-bg-color: #F0F0F0;
+$page-content-bg-color: #FFFFFF;
 $border-color: #CCCCCC;
 $blue: #66AFE9;
 $danger-border-color: #E2A8A8;
@@ -19,3 +20,7 @@ $success-bg-color: #E8F7ED;
 $success-font-color: #1BA84E;
 
 $sidebar-width: 104px;
+
+/* forms */
+$form-control-padding: 10px;
+$form-control-icon-color: #C2C2C2;
