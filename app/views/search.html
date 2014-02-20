@@ -1,1 +1,47 @@
-<p>This is the search view.</p>
+  <div class="view-container">
+  <form role="form">
+    <label class="hidden" data-ng-repeat="item in items">
+      <input type="radio" name="some-name" ng-model="$parent.name" ng-value="item" />{{item.name}}
+    </label>
+    <div class="btn-group" data-ng-repeat="item in items">
+      <button type="button" class="btn btn-default" ng-click=selectItem(item)>{{item.name}}</button>
+    </div>
+
+    <h3>{{name}}</h3>
+    <p>{{description}}</p>
+    
+    <p>
+    <label>Sectors</label>
+      <multiselect class="input-xlarge" multiple="true"
+        ng-model="selectedSector"
+        options="c.name for c in sectors"
+        change="selected()" ></multiselect>
+        <!--<div class="well well-small">
+            {{selectedSector}}
+        </div> -->
+  </p>
+  <p>
+        <label>Status</label>
+      <multiselect class="input-xlarge" multiple="true"
+        ng-model="selectedStatus"
+        options="c.name for c in status"
+        change="selected()" ></multiselect>
+  </p>
+        
+        
+    <div class="input-icon-left">
+      <span class="glyphicon glyphicon-search"></span>
+      <input type="text" class="form-control" placeholder="Filter" ng-model="searchFilter">
+    </div>
+    <div class="radio" ng-repeat="role in roles">
+      <label>
+        <input type="radio" value="{{role}}" ng-model="filterRole.selected"> {{role}}
+      </label>
+    </div>
+  </form>
+
+  <div id="search-panel" class="panel panel-default">
+</div>
+    
+    
+  </div>
