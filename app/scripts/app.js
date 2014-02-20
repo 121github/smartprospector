@@ -5,7 +5,8 @@ angular.module('smartprospectorApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ui.multiselect'
 ])
   .config(function ($routeProvider) {
     $routeProvider
