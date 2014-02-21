@@ -31,3 +31,8 @@ angular.module('smartprospectorApp').controller('SearchCtrl', function ($rootSco
     $scope.outcomes = [{id:1, name: 'No Answer'}, {id:2, name: 'Not Interested'}, {id:1, name: 'Call Back'}];
     $scope.selectedOutcomes = [];
   });
+
+
+function RangeCtrl($scope){
+  $scope.data = {range: "Hello"};
+}

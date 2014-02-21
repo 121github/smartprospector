@@ -1,71 +1,95 @@
-  <div class="view-container">
-    <div style="width:300px">
-  <form role="form">      
-    <label class="hidden" data-ng-repeat="item in items">
-      <input type="radio" name="some-name" ng-model="$parent.name" ng-value="item" />{{item.name}}
-    </label>
-    <div class="btn-group">
-      <button style="width:100px" data-ng-repeat="item in items" class="btn btn-default" ng-click=selectItem(item)>{{item.name}}</button>
-    </div>
- 
-    <h3>{{name}}</h3>
-    <p>{{description}}</p>
-    
-    <div class="input-icon-left">
-      <span class="glyphicon glyphicon-search"></span>
-      <input type="text" class="form-control" placeholder="Enter search" ng-model="searchFilter">
-    </div>
-    <div class="radio" ng-repeat="role in roles">
-      <label>
-        <input type="radio" value="{{role}}" ng-model="filterRole.selected"> {{role}}
+<div class="view-container">
+  <div style="width:300px">
+    <form role="form">      
+      <label class="hidden" data-ng-repeat="item in items">
+        <input type="radio" name="some-name" ng-model="$parent.name" ng-value="item" />{{item.name}}
       </label>
-    </div>
- 
+      <div class="btn-group">
+        <button style="width:100px" data-ng-repeat="item in items" class="btn btn-default" ng-click=selectItem(item)>{{item.name}}</button>
+      </div>
 
-  <div id="search-panel" class="panel panel-default">
+      <h3>{{name}}</h3>
+      <p>{{description}}</p>
+
+      <p>
+      <div class="input-group custom-search-form">
+        <input type="text" placeholder="Enter search" class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div><!-- /input-group -->
+      </p>
+
+
+      <p>
+      <div class="input-group custom-search-form">
+        <input type="text" placeholder="Enter Postcode"  class="form-control">
+        <span class="input-group-btn">
+          <div class="btn btn-default">
+            <span class="glyphicon glyphicon-map-marker"></span>
+          </div>
+        </span>
+      </div><!-- /input-group -->
+      </p>
+      
+            <p>
+<div class="input-group">
+    <input type="text" placeholder="Select Distance" class="form-control" value="{{range}}">
+  <div class="input-group-btn">
+     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Miles <span class="caret"></span></button>
+<ul class="dropdown-menu pull-right">
+          <li><a ng-click="range=1">Within 1 Mile</a></li>
+          <li><a ng-click="range=5">Within 5 Miles</a></li>
+          <li><a ng-click="range=10">Within 10 Miles</a></li>
+          <li><a ng-click="range=25">Within 25 Miles</a></li>
+          <li><a ng-click="range=50">Within 50 Miles</a></li>
+          <li><a ng-click="range=100">Within 100 Miles</a></li>
+          <li><a ng-click="range=500">Nationwide</a></li>
+        </ul>
+  </div>
+
 </div>
-    
-    
-    <p>
-            <div class="input-group custom-search-form">
-              <input type="text" class="form-control">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button">
-              <span class="glyphicon glyphicon-search"></span>
-             </button>
-             </span>
-             </div><!-- /input-group -->
-             
-             <input class="form-control" id="focusedInput" type="text" value="This is focused...">
+                    
+    </p>    
+            <p style="height:40px"><button ng-hide="showAdvanced" class="btn pull-left animate-show" type="button" name="submit">Search</button>    <a ng-click="showAdvanced = !showAdvanced" class="pull-right">Advanced Filter</a></p> 
+           
+            <div class="clearfix"></div>
+ 
+            <div id="advanced-form" ng-show="showAdvanced" class="check-element animate-show">
 
-    </p>
-    
-    <p>
-    <label>Sectors</label>
+      <p>
+        <label>Sectors</label>
       <multiselect class="input-xlarge" multiple="true"
-        ng-model="selectedSector"
-        options="c.name for c in sectors"
-        change="selected()" ></multiselect>
-        <!--<div class="well well-small">
-            {{selectedSector}}
-        </div> -->
-  </p>
-  <p>
+                   ng-model="selectedSector"
+                   options="c.name for c in sectors"
+                   change="selected()" ></multiselect>
+      <!--<div class="well well-small">
+          {{selectedSector}}
+      </div> -->
+      </p>
+      
+      <p>
         <label>Current Status</label>
-      <multiselect class="input-xlarge" multiple="true"
-        ng-model="selectedStatus"
-        options="c.name for c in status"
-        change="selected()" ></multiselect>
-  </p>
-        
-       <p>
+      <multiselect class="select" multiple="true"
+                   ng-model="selectedStatus"
+                   options="c.name for c in status"
+                   change="selected()" ></multiselect>
+      </p>
+
+      <p>
         <label>Last Outcome</label>
       <multiselect class="input-xlarge" multiple="true"
-        ng-model="selectedOutcomes"
-        options="c.name for c in outcomes"
-        change="selected()" ></multiselect>
-        </p>
+                   ng-model="selectedOutcomes"
+                   options="c.name for c in outcomes"
+                   change="selected()" ></multiselect>
+      </p>
+   <p><button class="btn pull-left" type="button" name="submit">Search</button></p> 
+    </form>
     
-     </form>
-    </div>
   </div>
+          
+            
+  </div>
+</div>

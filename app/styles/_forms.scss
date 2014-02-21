@@ -1,11 +1,16 @@
 .form-control {
-  height: auto;
+  height: 34px;
   padding: $form-control-padding;
   box-shadow: none;
   &:focus {
     box-shadow: none;
   }
 }
+.auto-height {
+  height: auto !important;
+}
+
+multiselect .caret { margin-top:5px }
 
 .input-icon-left {
   position: relative;
