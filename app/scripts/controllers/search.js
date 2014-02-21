@@ -7,8 +7,8 @@ angular.module('smartprospectorApp').controller('SearchCtrl', function ($rootSco
     
     $rootScope.items = [
         {name:'Companies',desc:'Search for a business'}, 
-        {name:'Contact',desc:'Search for a person'},
-        {name:'Map',desc:'Search for an address'}
+        {name:'Contacts',desc:'Search for a person'},
+        {name:'Maps',desc:'Search for an address'}
       ];
       
       //set the default search type
@@ -27,4 +27,7 @@ angular.module('smartprospectorApp').controller('SearchCtrl', function ($rootSco
         //sector multiselect
     $scope.status = [{id:1, name: 'New'}, {id:2, name: 'In Progress'}, {id:1, name: 'Complete'}];
     $scope.selectedStatus = [];
+            //sector outcomes
+    $scope.outcomes = [{id:1, name: 'No Answer'}, {id:2, name: 'Not Interested'}, {id:1, name: 'Call Back'}];
+    $scope.selectedOutcomes = [];
   });

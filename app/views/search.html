@@ -1,14 +1,44 @@
   <div class="view-container">
-  <form role="form">
+    <div style="width:300px">
+  <form role="form">      
     <label class="hidden" data-ng-repeat="item in items">
       <input type="radio" name="some-name" ng-model="$parent.name" ng-value="item" />{{item.name}}
     </label>
-    <div class="btn-group" data-ng-repeat="item in items">
-      <button type="button" class="btn btn-default" ng-click=selectItem(item)>{{item.name}}</button>
+    <div class="btn-group">
+      <button style="width:100px" data-ng-repeat="item in items" class="btn btn-default" ng-click=selectItem(item)>{{item.name}}</button>
     </div>
-
+ 
     <h3>{{name}}</h3>
     <p>{{description}}</p>
+    
+    <div class="input-icon-left">
+      <span class="glyphicon glyphicon-search"></span>
+      <input type="text" class="form-control" placeholder="Enter search" ng-model="searchFilter">
+    </div>
+    <div class="radio" ng-repeat="role in roles">
+      <label>
+        <input type="radio" value="{{role}}" ng-model="filterRole.selected"> {{role}}
+      </label>
+    </div>
+ 
+
+  <div id="search-panel" class="panel panel-default">
+</div>
+    
+    
+    <p>
+            <div class="input-group custom-search-form">
+              <input type="text" class="form-control">
+              <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-search"></span>
+             </button>
+             </span>
+             </div><!-- /input-group -->
+             
+             <input class="form-control" id="focusedInput" type="text" value="This is focused...">
+
+    </p>
     
     <p>
     <label>Sectors</label>
@@ -21,27 +51,21 @@
         </div> -->
   </p>
   <p>
-        <label>Status</label>
+        <label>Current Status</label>
       <multiselect class="input-xlarge" multiple="true"
         ng-model="selectedStatus"
         options="c.name for c in status"
         change="selected()" ></multiselect>
   </p>
         
-        
-    <div class="input-icon-left">
-      <span class="glyphicon glyphicon-search"></span>
-      <input type="text" class="form-control" placeholder="Filter" ng-model="searchFilter">
-    </div>
-    <div class="radio" ng-repeat="role in roles">
-      <label>
-        <input type="radio" value="{{role}}" ng-model="filterRole.selected"> {{role}}
-      </label>
-    </div>
-  </form>
-
-  <div id="search-panel" class="panel panel-default">
-</div>
+       <p>
+        <label>Last Outcome</label>
+      <multiselect class="input-xlarge" multiple="true"
+        ng-model="selectedOutcomes"
+        options="c.name for c in outcomes"
+        change="selected()" ></multiselect>
+        </p>
     
-    
+     </form>
+    </div>
   </div>
