@@ -1,38 +1,99 @@
 'use strict';
 
 
-angular.module('smartprospectorApp').controller('SearchCtrl', function ($rootScope, $scope) {
+angular.module('smartprospectorApp').controller('SearchCtrl', function($scope) {
+  $scope.pageTitle = 'Search';
+    $scope.loading = false;
+});
 
-    $rootScope.pageTitle = 'Search';
+ function searchCtrl($scope){
+  $scope.items = [
+    {type: 'Companies', desc: 'Search for a business'},
+    {type: 'Contacts', desc: 'Search for a person'},
+    {type: 'Maps', desc: 'Search for an address'}
+  ];
+
+  //set the default search type
+  $scope.type = "Companies";
+  $scope.description = "Search for a business";
+  $scope.reset = [];
+
+  $scope.selectItem = function(item) {
+
+    $scope.search.selectedOne = [];
+    $scope.search.selectedTwo = [];
+    $scope.search.selectedThree = [];
     
-    $rootScope.items = [
-        {name:'Companies',desc:'Search for a business'}, 
-        {name:'Contacts',desc:'Search for a person'},
-        {name:'Maps',desc:'Search for an address'}
-      ];
+    
+    console.log($scope.search);
+    $scope.type = item.type;
+    $scope.description = item.desc;
+         //clear the selections
+      $scope.search = $scope.reset;
       
-      //set the default search type
-      $rootScope.name = "Companies";
-      $rootScope.description = "Search for a business";
+       if (item.type === "Companies") {
+      $scope.selectOneTitle = "Sector";
+      $scope.selectTwoTitle = "Status";
+      $scope.selectThreeTitle = "Outcome";
+
       
-      $rootScope.selectItem = function(item){
-        $rootScope.name = item.name;
-        $rootScope.description = item.desc;
-      };
-    
-    
-    //sector multiselect
-    $scope.sectors = [{id:1, name: 'Food and Drink'}, {id:2, name: 'Industrial'}, {id:1, name: 'Technology'}];
-    $scope.selectedSectors = [];
-        //sector multiselect
-    $scope.status = [{id:1, name: 'New'}, {id:2, name: 'In Progress'}, {id:1, name: 'Complete'}];
-    $scope.selectedStatus = [];
-            //sector outcomes
-    $scope.outcomes = [{id:1, name: 'No Answer'}, {id:2, name: 'Not Interested'}, {id:1, name: 'Call Back'}];
-    $scope.selectedOutcomes = [];
-  });
+  //sector multiselect
+  $scope.selectOne = [{id: 1, name: 'Food and Drink'}, {id: 2, name: 'Industrial'}, {id: 3, name: 'Technology'}];
+  //sector multiselect
+  $scope.selectTwo = [{id: 1, name: 'New'}, {id: 2, name: 'In Progress'}, {id: 3, name: 'Complete'}];
+  //sector outcomes
+  $scope.selectThree = [{id: 1, name: 'No Answer'}, {id: 2, name: 'Not Interested'}, {id: 3, name: 'Call Back'}];
+      
+    }
+    else if (item.type === "Contacts") {
+
+      $scope.selectOneTitle = "Position";
+      $scope.selectTwoTitle = "Department";
+      $scope.selectThreeTitle = "Income";
+      
+      //first multiselect
+      $scope.selectOne = [{id: 1, name: 'Director'}, {id: 2, name: 'Manager'}, {id: 3, name: 'Consultant'}];
+      //second multiselect
+      $scope.selectTwo = [{id: 1, name: 'IT'}, {id: 2, name: 'Sales'}, {id: 3, name: 'Accounts'}];
+      //third outcomes
+      $scope.selectThree = [{id: 1, name: '£10k-£15k'}, {id: 2, name: '£15k-£30k'}, {id: 3, name: '£30k-£50k'}];
+    }
+  };
 
 
-function RangeCtrl($scope){
-  $scope.data = {range: "Hello"};
+  $scope.selectOneTitle = "Sector";
+  $scope.selectTwoTitle = "Status";
+  $scope.selectThreeTitle = "Outcome";
+  //clear the selections
+  $scope.search = [{selectedOne:[],selectedTwo:[],selectedThree:[]}];
+  
+  //sector multiselect
+  $scope.selectOne = [{id: 1, name: 'Food and Drink'}, {id: 2, name: 'Industrial'}, {id: 3, name: 'Technology'}];
+  //sector multiselect
+  $scope.selectTwo = [{id: 1, name: 'New'}, {id: 2, name: 'In Progress'}, {id: 3, name: 'Complete'}];
+  //sector outcomes
+  $scope.selectThree = [{id: 1, name: 'No Answer'}, {id: 2, name: 'Not Interested'}, {id: 3, name: 'Call Back'}];
+
+
+
+  $scope.displayIcon = 'glyphicon-minus';
+  $scope.displayPanel = true;
+  
+  $scope.togglePanel = function(panelName){
+    if(panelName===false){
+    $scope.displayIcon = "glyphicon-minus"; } else {
+    $scope.displayIcon = "glyphicon-plus";
+    }
+  };
 }
+  function resultsCtrl($scope){
+  $scope.displayIcon = 'glyphicon-plus';
+  $scope.displayPanel = true;
+    
+   $scope.togglePanel = function(panelName){
+    if(panelName===true){
+    $scope.displayIcon = "glyphicon-minus"; } else {
+    $scope.displayIcon = "glyphicon-plus";
+    }
+  };
+  }
