@@ -6,7 +6,6 @@ angular.module('smartprospectorApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'ui.multiselect',
   'ngAnimate',
   'ngGrid'
 ])
