@@ -109,7 +109,13 @@
           <i class="fa fa-search"></i> Search Results <span ng-click="togglePanel(panelState=!panelState)" class="pull-right glyphicon {{displayIcon}} pointer"></span>
         </div>
         <div class="panel-body" ng-show="panelState">
-          The results will load here
+          <p>{{results}}</p>
+        <table>
+        <tr ng-repeat="record in records">
+            <td>{{record.id}}</td>
+            <td>{{record.name}}</td>
+        </tr>
+      </table>
         </div>
       </div>
 

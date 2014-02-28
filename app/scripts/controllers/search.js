@@ -6,13 +6,12 @@ angular.module('smartprospectorApp').controller('SearchCtrl', function($scope) {
   $scope.loading = false;
 });
 
-function searchCtrl($scope,Company) {
-  
-   $scope.company = Company.query({action: 'all'}, function () {
-      console.log($scope.company);
-      $scope.loading = false;
-    });
-  
+angular.module('smartprospectorApp').factory('Results', function(Search) {
+  return Search.query({action: 'companies'});
+});
+
+function searchCtrl($scope,Search) {
+ 
   
   $scope.items = [
     {type: 'Companies', desc: 'Search for a business'},
@@ -94,7 +93,10 @@ function searchCtrl($scope,Company) {
     }
   };
 }
-function resultsCtrl($scope) {
+function resultsCtrl($scope, Results) {
+  $scope.records = Results;
+  $scope.results = Results.length;
+  console.log(Results);
   $scope.displayIcon = 'glyphicon-plus';
   $scope.displayPanel = true;
 
