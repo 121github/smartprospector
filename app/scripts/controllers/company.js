@@ -6,7 +6,14 @@ angular.module('smartprospectorApp').controller('SearchCtrl', function($scope) {
   $scope.loading = false;
 });
 
-function searchCtrl($scope) {
+function searchCtrl($scope,Company) {
+  
+   $scope.company = Company.query({action: 'all'}, function () {
+      console.log($scope.company);
+      $scope.loading = false;
+    });
+  
+  
   $scope.items = [
     {type: 'Companies', desc: 'Search for a business'},
     {type: 'Contacts', desc: 'Search for a person'},
