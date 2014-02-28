@@ -105,20 +105,25 @@
       </div> <!-- end of loading animation mask -->
 
       <div id="results-panel" class="panel panel-default" ng-controller="resultsCtrl">
+      
         <div class="panel-heading">
           <i class="fa fa-search"></i> Search Results <span ng-click="togglePanel(panelState=!panelState)" class="pull-right glyphicon {{displayIcon}} pointer"></span>
         </div>
         <div class="panel-body" ng-show="panelState">
-          <p>{{results}}</p>
-        <table>
-        <tr ng-repeat="record in records">
-            <td>{{record.id}}</td>
-            <td>{{record.name}}</td>
-        </tr>
-      </table>
+               <div class="list-group">
+              <a class="list-group-item" ng-repeat="record in records| filter:searchFilter | filter:filterByRole">
+                  <span style="float:left; padding-right:10px"><img src="{{record.logo}}/?{{record.id}}" /></span>
+                  
+                  <span style="display:inline"><h4>{{record.name}}</h4>
+               <p>{{record.description}}</p></span>
+                    <span class="badge">{{record.id}}</span>
+                    <div style="clear:both"></div>
+              </a>
+            </div>
         </div>
       </div>
 
+      
     </div>
   </div> <!-- /.view-container -->
 </div> <!-- /#users -->

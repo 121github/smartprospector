@@ -93,10 +93,8 @@ function searchCtrl($scope,Search) {
     }
   };
 }
+
 function resultsCtrl($scope, Results) {
-  $scope.records = Results;
-  $scope.results = Results.length;
-  console.log(Results);
   $scope.displayIcon = 'glyphicon-plus';
   $scope.displayPanel = true;
 
@@ -107,4 +105,14 @@ function resultsCtrl($scope, Results) {
       $scope.displayIcon = "glyphicon-plus";
     }
   };
-}
+  
+  
+  $scope.records = Results;
+  
+/*show results as table using ng-grid
+  $scope.myData = Results;
+  $scope.searchResults = { data: 'myData' }; 
+*/
+  
+};
+
