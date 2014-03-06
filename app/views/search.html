@@ -13,18 +13,19 @@
       </div>
       <div ng-switch-when="false">
         <!-- Place everything you want to mask by the loading animation here -->
-        <div id="search-panel" class="panel panel-default" ng-controller="searchCtrl">
+        <div id="search-panel" class="panel panel-default">
           <div class="panel-heading">
-            <i class="fa fa-search"></i> Search Options <span ng-click="togglePanel(panelState=!panelState)" class="pull-right glyphicon {{displayIcon}} pointer"></span>
+            <i class="fa fa-search"></i> Search Options
+          <span ng-click="toggleSearchPanel(searchPanelState=!searchPanelState)" class="pull-right glyphicon {{filterIcon}} pointer"></span>
           </div>
-          <div class="panel-body" ng-hide="panelState">
+          <div class="panel-body" ng-hide="searchPanelState">
 
-            <form role="form">      
+         
               <label class="hidden" data-ng-repeat="item in items">
-                <input type="radio" name="some-name" ng-model="$parent.name" ng-value="item" />{{item.type}}
+                <input type="radio" ng-model="$parent.name" ng-value="item" />{{item.type}}
               </label>
               <div class="btn-group">
-                <button  data-ng-repeat="item in items" class="btn btn-default" ng-click=selectItem(item)>{{item.type}}</button>
+                <a  data-ng-repeat="item in items" class="btn btn-default" ng-click=selectItem(item)>{{item.type}}</a>
               </div>
 
               <h3>{{type}}</h3>
@@ -32,7 +33,7 @@
 
               <p>
               <div class="input-group custom-search-form">
-                <input type="text" placeholder="Enter search" class="form-control">
+                <input type="text" ng-required="!search.postcode" placeholder="Enter search" class="form-control" ng-model="search.keyword">
                 <span class="input-group-btn">
                   <button class="btn btn-default" type="button">
                     <span class="glyphicon glyphicon-search"></span>
@@ -41,13 +42,13 @@
               </div><!-- /input-group -->
               </p>
 
-
+   <form role="form" ng-submit="doSearch(search)">
               <p>
               <div class="input-group custom-search-form">
-                <input type="text" placeholder="Enter Postcode"  class="form-control">
+                <input type="text" ng-required="search.range" placeholder="Enter Postcode" class="form-control" ng-model="search.postcode">
                 <span class="input-group-btn">
                   <div class="btn btn-default">
-                    <span class="glyphicon glyphicon-map-marker"></span>
+                    <span class="glyphicon glyphicon-map-marker" ng-click="getPostcode()"></span>
                   </div>
                 </span>
               </div><!-- /input-group -->
@@ -55,24 +56,26 @@
 
               <p>
               <div class="input-group">
-                <input type="text" placeholder="Select Distance" class="form-control" value="{{range}}">
+                <input type="text" placeholder="Select Distance" class="form-control" value="{{search.range}}" ng-model="search.range">
                 <div class="input-group-btn">
                   <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Miles <span class="caret"></span></button>
                   <ul class="dropdown-menu pull-right">
-                    <li><a ng-click="range=1">Within 1 Mile</a></li>
-                    <li><a ng-click="range=5">Within 5 Miles</a></li>
-                    <li><a ng-click="range=10">Within 10 Miles</a></li>
-                    <li><a ng-click="range=25">Within 25 Miles</a></li>
-                    <li><a ng-click="range=50">Within 50 Miles</a></li>
-                    <li><a ng-click="range=100">Within 100 Miles</a></li>
-                    <li><a ng-click="range=500">Nationwide</a></li>
+                    <li><a ng-click="search.range=1">Within 1 Mile</a></li>
+                    <li><a ng-click="search.range=5">Within 5 Miles</a></li>
+                    <li><a ng-click="search.range=10">Within 10 Miles</a></li>
+                    <li><a ng-click="search.range=25">Within 25 Miles</a></li>
+                    <li><a ng-click="search.range=50">Within 50 Miles</a></li>
+                    <li><a ng-click="search.range=100">Within 100 Miles</a></li>
+                    <li><a ng-click="search.range=500">Nationwide</a></li>
                   </ul>
                 </div>
 
-              </div> 
+              </div>
 
-              </p>    
-              <p style="height:40px"><button class="btn pull-left animate-show" type="button" name="submit">Search</button>    <a ng-click="showAdvanced = !showAdvanced" class="pull-right">Advanced Filter</a></p> 
+              </p>
+              <p style="height:40px">
+                <button class="btn pull-left animate-show" type="submit" name="submit">Search</button>
+                <a ng-click="showAdvanced = !showAdvanced" class="pull-right">Advanced Filter</a></p>
 
               <div class="clearfix"></div>
 
@@ -95,7 +98,7 @@
                   <select class="form-control" ng-options="opt.name for opt in selectThree" multiple="true" ng-multiple="true" ng-model="search.selectedThree">
                   </select>
                 </p>
-                <p><button class="btn pull-left" type="button" name="submit">Search</button></p> 
+                <p><button class="btn pull-left" type="submit" name="submit">Search</button></p>
             </form>
 
           </div> <!-- /.panel-body -->
@@ -104,26 +107,32 @@
 
       </div> <!-- end of loading animation mask -->
 
-      <div id="results-panel" class="panel panel-default" ng-controller="resultsCtrl">
-      
+      <div id="results-panel" class="panel panel-default" >
+
         <div class="panel-heading">
-          <i class="fa fa-search"></i> Search Results <span ng-click="togglePanel(panelState=!panelState)" class="pull-right glyphicon {{displayIcon}} pointer"></span>
+          <i class="fa fa-search"></i> Search Results <span ng-click="toggleResultsPanel(resultsPanelState=!resultsPanelState)" class="pull-right glyphicon {{resultsIcon}} pointer"></span>
         </div>
-        <div class="panel-body" ng-show="panelState">
-               <div class="list-group">
-              <a class="list-group-item" ng-repeat="record in records| filter:searchFilter | filter:filterByRole">
-                  <span style="float:left; padding-right:10px"><img src="{{record.logo}}/?{{record.id}}" /></span>
-                  
-                  <span style="display:inline"><h4>{{record.name}}</h4>
-               <p>{{record.description}}</p></span>
-                    <span class="badge">{{record.id}}</span>
-                    <div style="clear:both"></div>
-              </a>
-            </div>
+        <div class="panel-body" ng-show="resultsPanelState">
+          <p ng-show="preSearch">Please enter your search options and click submit</p>
+          <p>{{msg}}</p>
+          <div class="list-group">
+            <a class="list-group-item" ng-repeat="record in records| filter:searchFilter | filter:filterByRole">
+              <span style="float:left; padding-right:10px">
+                <img ng-src="{{record.logo}}?{{record.record_id}}" />
+              </span>
+
+              <span style="display:inline">
+                <h4>{{record.name}}</h4>
+                <p>{{record.description}}</p>
+              </span>
+              <span class="badge">{{record.state}}</span>
+              <div style="clear:both"></div>
+            </a>
+          </div>
         </div>
       </div>
 
-      
+
     </div>
   </div> <!-- /.view-container -->
 </div> <!-- /#users -->
