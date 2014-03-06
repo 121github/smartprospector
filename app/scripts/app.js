@@ -6,8 +6,8 @@ angular.module('smartprospectorApp', [
   'ngSanitize',
   'ngRoute',
   'ui.bootstrap',
-  'ngAnimate',
-  'ngGrid'
+  'ngGrid',
+  'ngStorage'
 ])
   .config(function ($routeProvider) {
     $routeProvider

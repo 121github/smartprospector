@@ -1,41 +1,36 @@
 'use strict';
 
 
-angular.module('smartprospectorApp').controller('SearchCtrl', function($scope) {
-  $scope.pageTitle = 'Search';
-  $scope.loading = false;
-});
+angular.module('smartprospectorApp').controller('SearchCtrl', function($rootScope, $scope, searchCompanies, geolocation, Geocoder) {
+  $rootScope.pageTitle = 'Search';
+  $rootScope.loading = false;
+  $scope.preSearch = true;
+  $scope.search = {};
 
-angular.module('smartprospectorApp').factory('Results', function(Search) {
-  return Search.query({action: 'companies'});
-});
+  $scope.getPostcode = function() {
+    geolocation.getLocation().then(function(data) {
+//console.log(data);
+      Geocoder.addressForLatLng(data.coords.latitude, data.coords.longitude).then(function(data) {
+        $scope.search.postcode = data.postcode;
+      });
+    });
+  };
 
-function searchCtrl($scope,Search) {
- 
-  
   $scope.items = [
     {type: 'Companies', desc: 'Search for a business'},
     {type: 'Contacts', desc: 'Search for a person'},
     {type: 'Maps', desc: 'Search for an address'}
   ];
 
+
   //set the default search type
   $scope.type = "Companies";
   $scope.description = "Search for a business";
-  $scope.reset = [];
 
   $scope.selectItem = function(item) {
 
-    $scope.search.selectedOne = [];
-    $scope.search.selectedTwo = [];
-    $scope.search.selectedThree = [];
-
-
-    console.log($scope.search);
     $scope.type = item.type;
     $scope.description = item.desc;
-    //clear the selections
-    $scope.search = $scope.reset;
 
     if (item.type === "Companies") {
       $scope.selectOneTitle = "Sector";
@@ -70,8 +65,6 @@ function searchCtrl($scope,Search) {
   $scope.selectOneTitle = "Sector";
   $scope.selectTwoTitle = "Status";
   $scope.selectThreeTitle = "Outcome";
-  //clear the selections
-  $scope.search = [{selectedOne: [], selectedTwo: [], selectedThree: []}];
 
   //sector multiselect
   $scope.selectOne = [{id: 1, name: 'Food and Drink'}, {id: 2, name: 'Industrial'}, {id: 3, name: 'Technology'}];
@@ -92,27 +85,59 @@ function searchCtrl($scope,Search) {
       $scope.displayIcon = "glyphicon-plus";
     }
   };
-}
 
-function resultsCtrl($scope, Results) {
-  $scope.displayIcon = 'glyphicon-plus';
-  $scope.displayPanel = true;
+  $scope.doSearch = function(params) {
+    searchCompanies.query(
+            params, function(response) {
+      if (response[0]) {
+        $scope.msg = "";
+        $scope.records = response;
 
-  $scope.togglePanel = function(panelName) {
-    if (panelName === true) {
-      $scope.displayIcon = "glyphicon-minus";
+      } else {
+        $scope.msg = "No results found";
+        $scope.records = {};
+      }
+      //for some reason this only works once when you submit the search???
+      $scope.filterIcon = "glyphicon-plus";
+      $scope.searchPanelState = true;
+      $scope.resultsIcon = "glyphicon-minus";
+      $scope.resultsPanelState = true;
+      $scope.preSearch = false;
+    });
+  };
+
+//sets the initial panel icons
+  $scope.resultsIcon = 'glyphicon-plus';
+  $scope.filterIcon = 'glyphicon-minus';
+
+
+
+  $scope.toggleSearchPanel = function(panelState) {
+    if (panelState === false) {
+      $scope.filterIcon = "glyphicon-minus";
+      $scope.searchPanelState = true;
     } else {
-      $scope.displayIcon = "glyphicon-plus";
+      $scope.filterIcon = "glyphicon-plus";
+      $scope.searchPanelState = false;
     }
   };
-  
-  
-  $scope.records = Results;
-  
-/*show results as table using ng-grid
-  $scope.myData = Results;
-  $scope.searchResults = { data: 'myData' }; 
-*/
-  
-};
+
+  $scope.toggleResultsPanel = function(panelState) {
+    if (panelState === true) {
+      $scope.resultsIcon = "glyphicon-minus";
+      $scope.resultsPanelState = true;
+    } else {
+      $scope.resultsIcon = "glyphicon-plus";
+      $scope.resultsPanelState = false;
+    }
+  };
+
+});
+
+//show results as table using ng-grid
+//$scope.myData = Results;
+//$scope.searchResults = { data: 'myData' }; 
+
+
+;
 
